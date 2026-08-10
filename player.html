@@ -2,37 +2,25 @@
 <html lang="fr">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Rankify — Player</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link rel="stylesheet" href="style.css">
 
     <style>
-
         .player-page {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: auto;
-            padding: 80px 25px;
+            padding: 60px 25px;
         }
 
         .back-button {
             display: inline-block;
-            margin-bottom: 30px;
-
+            margin-bottom: 25px;
             color: #9296a3;
             text-decoration: none;
-
-            font-size: 14px;
         }
 
         .back-button:hover {
@@ -41,13 +29,34 @@
 
         .player-header {
             padding: 35px;
+            margin-bottom: 20px;
 
             background: #101219;
-
             border: 1px solid #20232d;
+            border-radius: 20px;
+        }
+
+        .player-header-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
             border-radius: 18px;
 
-            margin-bottom: 20px;
+            background: #ffcf33;
+            color: #111;
+
+            font-size: 35px;
+            font-weight: 900;
         }
 
         .player-name {
@@ -56,102 +65,135 @@
         }
 
         .player-tag {
-            margin-top: 8px;
-
+            margin-top: 7px;
             color: #777c89;
-
             font-family: monospace;
         }
 
         .stats-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 18px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
         }
 
         .stat-card {
             padding: 25px;
 
             background: #101219;
-
             border: 1px solid #20232d;
-
             border-radius: 16px;
         }
 
         .stat-icon {
-            font-size: 25px;
+            font-size: 24px;
         }
 
         .stat-name {
             margin-top: 15px;
-
             color: #777c89;
-
-            font-size: 13px;
+            font-size: 12px;
+            font-weight: 700;
         }
 
         .stat-value {
             margin-top: 7px;
-
-            font-size: 24px;
-            font-weight: 800;
+            font-size: 26px;
+            font-weight: 900;
         }
 
-        .rank-section {
+        .section {
             margin-top: 20px;
-
             padding: 30px;
 
             background: #101219;
-
             border: 1px solid #20232d;
-
-            border-radius: 18px;
+            border-radius: 20px;
         }
 
-        .rank-title {
-            color: #ffcf33;
+        .section-title {
+            margin-bottom: 25px;
+            text-align: left;
+        }
 
-            font-size: 12px;
+        .section-title h2 {
+            font-size: 25px;
+            margin-top: 5px;
+        }
+
+        .section-title span {
+            color: #ffcf33;
+            font-size: 11px;
             font-weight: 800;
             letter-spacing: 2px;
         }
 
-        .rank-name {
-            margin-top: 10px;
-
-            font-size: 32px;
-            font-weight: 900;
+        .brawler-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
         }
 
-        @media (max-width: 800px) {
+        .brawler {
+            padding: 18px;
 
+            background: #151720;
+            border: 1px solid #242733;
+            border-radius: 14px;
+        }
+
+        .brawler-name {
+            font-weight: 800;
+        }
+
+        .brawler-info {
+            margin-top: 8px;
+            color: #858996;
+            font-size: 13px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 100px 20px;
+            color: #777c89;
+        }
+
+        .error {
+            padding: 25px;
+
+            background: #191116;
+            border: 1px solid #4d2630;
+            border-radius: 15px;
+
+            color: #ff7d8d;
+        }
+
+        @media (max-width: 900px) {
             .stats-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
 
+            .brawler-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
-        @media (max-width: 500px) {
-
+        @media (max-width: 550px) {
             .stats-grid {
                 grid-template-columns: 1fr;
             }
 
+            .brawler-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .player-name {
+                font-size: 28px;
+            }
         }
-
     </style>
-
 </head>
 
-
 <body>
-
 
 <header class="navbar">
 
@@ -160,156 +202,163 @@
     </div>
 
     <nav>
-
-        <a href="index.html">
-            Accueil
-        </a>
-
-        <a href="index.html#search">
-            Recherche
-        </a>
-
+        <a href="index.html">Accueil</a>
+        <a href="index.html#search">Recherche</a>
     </nav>
-
-    <a
-        class="discord-button"
-        href="#"
-    >
-        Discord
-    </a>
 
 </header>
 
 
-
 <main class="player-page">
 
-
-    <a
-        href="index.html"
-        class="back-button"
-    >
-        ← Retour à la recherche
+    <a href="index.html" class="back-button">
+        ← Retour
     </a>
 
+    <div id="loading" class="loading">
+        🔎 Chargement du profil...
+    </div>
 
 
-    <section class="player-header">
+    <div id="content" style="display:none;">
 
-        <div
-            id="playerName"
-            class="player-name"
-        >
-            Joueur
-        </div>
+        <section class="player-header">
 
-        <div
-            id="playerTag"
-            class="player-tag"
-        >
-            #PLAYER
-        </div>
+            <div class="player-header-top">
 
-    </section>
+                <div class="avatar" id="avatar">
+                    ?
+                </div>
 
+                <div>
 
+                    <div class="player-name" id="playerName">
+                        Joueur
+                    </div>
 
-    <section class="stats-grid">
+                    <div class="player-tag" id="playerTag">
+                        #PLAYER
+                    </div>
 
+                </div>
 
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                🏆
             </div>
 
-            <div class="stat-name">
-                TROPHÉES
+        </section>
+
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🏆</div>
+
+                <div class="stat-name">
+                    TROPHÉES
+                </div>
+
+                <div class="stat-value" id="trophies">
+                    -
+                </div>
+
             </div>
 
-            <div class="stat-value">
-                —
+
+            <div class="stat-card">
+
+                <div class="stat-icon">⭐</div>
+
+                <div class="stat-name">
+                    XP LEVEL
+                </div>
+
+                <div class="stat-value" id="xp">
+                    -
+                </div>
+
             </div>
 
-        </div>
 
+            <div class="stat-card">
 
+                <div class="stat-icon">🎮</div>
 
-        <div class="stat-card">
+                <div class="stat-name">
+                    VICTOIRES 3V3
+                </div>
 
-            <div class="stat-icon">
-                🔥
+                <div class="stat-value" id="threeVsThree">
+                    -
+                </div>
+
             </div>
 
-            <div class="stat-name">
-                RANKED ELO
+
+            <div class="stat-card">
+
+                <div class="stat-icon">⚔️</div>
+
+                <div class="stat-name">
+                    VICTOIRES SOLO
+                </div>
+
+                <div class="stat-value" id="solo">
+                    -
+                </div>
+
             </div>
 
-            <div class="stat-value">
-                —
+        </section>
+
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <span>BRAWLERS</span>
+
+                <h2>
+                    Brawlers du joueur
+                </h2>
+
             </div>
 
-        </div>
+            <div
+                id="brawlers"
+                class="brawler-grid"
+            ></div>
+
+        </section>
 
 
+        <section class="section">
 
-        <div class="stat-card">
+            <div class="section-title">
 
-            <div class="stat-icon">
-                🎮
+                <span>CLUB</span>
+
+                <h2>
+                    Club
+                </h2>
+
             </div>
 
-            <div class="stat-name">
-                VICTOIRES
+            <div id="club">
+                Aucun club
             </div>
 
-            <div class="stat-value">
-                —
-            </div>
+        </section>
 
-        </div>
+    </div>
 
 
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                ⭐
-            </div>
-
-            <div class="stat-name">
-                NIVEAU XP
-            </div>
-
-            <div class="stat-value">
-                —
-            </div>
-
-        </div>
-
-
-    </section>
-
-
-
-    <section class="rank-section">
-
-        <div class="rank-title">
-            RANKED
-        </div>
-
-        <div
-            id="rankName"
-            class="rank-name"
-        >
-            Données bientôt disponibles
-        </div>
-
-    </section>
-
+    <div
+        id="error"
+        class="error"
+        style="display:none;"
+    ></div>
 
 </main>
-
 
 
 <footer>
@@ -319,35 +368,185 @@
     </div>
 
     <div>
-        Brawl Stars Player Stats
+        Brawl Stars Player Analytics
     </div>
 
 </footer>
 
 
-
 <script>
 
-    const params =
-        new URLSearchParams(
-            window.location.search
+const API_URL = "http://127.0.0.1:5000";
+
+const loading =
+    document.getElementById("loading");
+
+const content =
+    document.getElementById("content");
+
+const errorBox =
+    document.getElementById("error");
+
+
+async function loadPlayer() {
+
+    const stored =
+        sessionStorage.getItem("rankifyPlayer");
+
+    if (!stored) {
+
+        showError(
+            "Aucun joueur sélectionné."
         );
 
-    const tag =
-        params.get("tag");
+        return;
+    }
 
 
-    if (tag) {
+    const player = JSON.parse(stored);
+
+
+    document.getElementById(
+        "playerName"
+    ).textContent =
+        player.name || "Joueur";
+
+
+    document.getElementById(
+        "playerTag"
+    ).textContent =
+        player.tag || "";
+
+
+    document.getElementById(
+        "avatar"
+    ).textContent =
+        (player.name || "?")
+        .charAt(0)
+        .toUpperCase();
+
+
+    document.getElementById(
+        "trophies"
+    ).textContent =
+        formatNumber(player.trophies);
+
+
+    document.getElementById(
+        "xp"
+    ).textContent =
+        formatNumber(player.expLevel);
+
+
+    document.getElementById(
+        "threeVsThree"
+    ).textContent =
+        formatNumber(
+            player["3vs3Victories"]
+        );
+
+
+    document.getElementById(
+        "solo"
+    ).textContent =
+        formatNumber(
+            player.soloVictories
+        );
+
+
+    if (player.club) {
 
         document.getElementById(
-            "playerTag"
+            "club"
         ).textContent =
-            "#" + tag;
+            `${player.club.name} (${player.club.tag})`;
 
     }
 
-</script>
 
+    const brawlers =
+        player.brawlers || [];
+
+    const container =
+        document.getElementById("brawlers");
+
+
+    if (brawlers.length === 0) {
+
+        container.innerHTML =
+            "<p>Aucun Brawler disponible.</p>";
+
+    } else {
+
+        container.innerHTML =
+            brawlers.map(brawler => `
+
+                <div class="brawler">
+
+                    <div class="brawler-name">
+                        ${escapeHTML(brawler.name)}
+                    </div>
+
+                    <div class="brawler-info">
+                        🏆 ${formatNumber(brawler.trophies)}
+                    </div>
+
+                    <div class="brawler-info">
+                        ⚡ Power ${brawler.power}
+                    </div>
+
+                </div>
+
+            `).join("");
+
+    }
+
+
+    loading.style.display = "none";
+
+    content.style.display = "block";
+}
+
+
+function formatNumber(number) {
+
+    if (
+        number === undefined ||
+        number === null
+    ) {
+        return "-";
+    }
+
+    return Number(number).toLocaleString("fr-FR");
+}
+
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+function showError(message) {
+
+    loading.style.display = "none";
+
+    errorBox.textContent =
+        "❌ " + message;
+
+    errorBox.style.display =
+        "block";
+}
+
+
+loadPlayer();
+
+</script>
 
 </body>
 
