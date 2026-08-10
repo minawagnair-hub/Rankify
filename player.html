@@ -1,321 +1,545 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Rankify — Player</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 
     <style>
+
         .player-page {
+
             max-width: 1200px;
+
             margin: auto;
+
             padding: 60px 25px;
+
         }
+
 
         .back-button {
+
             display: inline-block;
+
             margin-bottom: 25px;
+
             color: #9296a3;
+
             text-decoration: none;
+
         }
+
 
         .back-button:hover {
+
             color: #ffcf33;
+
         }
 
+
         .player-header {
+
             padding: 35px;
+
             margin-bottom: 20px;
 
             background: #101219;
+
             border: 1px solid #20232d;
+
             border-radius: 20px;
+
         }
+
 
         .player-header-top {
+
             display: flex;
+
             align-items: center;
+
             gap: 20px;
+
         }
 
+
         .avatar {
+
             width: 80px;
+
             height: 80px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             border-radius: 18px;
 
             background: #ffcf33;
+
             color: #111;
 
             font-size: 35px;
+
             font-weight: 900;
+
         }
+
 
         .player-name {
+
             font-size: 38px;
+
             font-weight: 900;
+
         }
+
 
         .player-tag {
+
             margin-top: 7px;
+
             color: #777c89;
+
             font-family: monospace;
+
         }
+
 
         .stats-grid {
+
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+
+                repeat(4, 1fr);
+
             gap: 16px;
+
         }
 
+
         .stat-card {
+
             padding: 25px;
 
             background: #101219;
+
             border: 1px solid #20232d;
+
             border-radius: 16px;
+
         }
+
 
         .stat-icon {
+
             font-size: 24px;
+
         }
+
 
         .stat-name {
+
             margin-top: 15px;
+
             color: #777c89;
+
             font-size: 12px;
+
             font-weight: 700;
+
         }
+
 
         .stat-value {
+
             margin-top: 7px;
+
             font-size: 26px;
+
             font-weight: 900;
+
         }
 
+
         .section {
+
             margin-top: 20px;
+
             padding: 30px;
 
             background: #101219;
+
             border: 1px solid #20232d;
+
             border-radius: 20px;
+
         }
+
 
         .section-title {
+
             margin-bottom: 25px;
-            text-align: left;
+
         }
 
-        .section-title h2 {
-            font-size: 25px;
-            margin-top: 5px;
-        }
 
         .section-title span {
+
             color: #ffcf33;
+
             font-size: 11px;
+
             font-weight: 800;
+
             letter-spacing: 2px;
+
         }
+
+
+        .section-title h2 {
+
+            margin-top: 5px;
+
+            font-size: 25px;
+
+        }
+
 
         .brawler-grid {
+
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+
+            grid-template-columns:
+
+                repeat(5, 1fr);
+
             gap: 12px;
+
         }
 
+
         .brawler {
+
             padding: 18px;
 
             background: #151720;
+
             border: 1px solid #242733;
+
             border-radius: 14px;
+
         }
+
 
         .brawler-name {
+
             font-weight: 800;
+
         }
+
 
         .brawler-info {
+
             margin-top: 8px;
+
             color: #858996;
+
             font-size: 13px;
+
         }
+
 
         .loading {
+
             text-align: center;
+
             padding: 100px 20px;
+
             color: #777c89;
+
         }
 
+
         .error {
+
             padding: 25px;
 
             background: #191116;
+
             border: 1px solid #4d2630;
+
             border-radius: 15px;
 
             color: #ff7d8d;
+
         }
+
 
         @media (max-width: 900px) {
+
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+
+                grid-template-columns:
+
+                    repeat(2, 1fr);
+
             }
 
             .brawler-grid {
-                grid-template-columns: repeat(3, 1fr);
+
+                grid-template-columns:
+
+                    repeat(3, 1fr);
+
             }
+
         }
 
+
         @media (max-width: 550px) {
+
             .stats-grid {
+
                 grid-template-columns: 1fr;
+
             }
 
             .brawler-grid {
-                grid-template-columns: repeat(2, 1fr);
+
+                grid-template-columns:
+
+                    repeat(2, 1fr);
+
             }
 
             .player-name {
+
                 font-size: 28px;
+
             }
+
         }
+
     </style>
+
 </head>
 
+
 <body>
+
 
 <header class="navbar">
 
     <div class="logo">
-        <span>R</span> Rankify
+
+        <span>R</span>
+
+        Rankify
+
     </div>
 
+
     <nav>
-        <a href="index.html">Accueil</a>
-        <a href="index.html#search">Recherche</a>
+
+        <a href="index.html">
+            Accueil
+        </a>
+
+        <a href="index.html#search">
+            Recherche
+        </a>
+
     </nav>
 
 </header>
 
 
+
 <main class="player-page">
 
-    <a href="index.html" class="back-button">
+
+    <a
+        href="index.html"
+        class="back-button"
+    >
         ← Retour
     </a>
 
-    <div id="loading" class="loading">
+
+    <div
+        id="loading"
+        class="loading"
+    >
+
         🔎 Chargement du profil...
+
     </div>
 
 
-    <div id="content" style="display:none;">
+    <div
+        id="content"
+        style="display:none;"
+    >
+
 
         <section class="player-header">
 
+
             <div class="player-header-top">
 
-                <div class="avatar" id="avatar">
+
+                <div
+                    id="avatar"
+                    class="avatar"
+                >
                     ?
                 </div>
 
+
                 <div>
 
-                    <div class="player-name" id="playerName">
+                    <div
+                        id="playerName"
+                        class="player-name"
+                    >
                         Joueur
                     </div>
 
-                    <div class="player-tag" id="playerTag">
+
+                    <div
+                        id="playerTag"
+                        class="player-tag"
+                    >
                         #PLAYER
                     </div>
 
                 </div>
 
+
             </div>
+
 
         </section>
 
 
+
         <section class="stats-grid">
+
 
             <div class="stat-card">
 
-                <div class="stat-icon">🏆</div>
+                <div class="stat-icon">
+                    🏆
+                </div>
 
                 <div class="stat-name">
                     TROPHÉES
                 </div>
 
-                <div class="stat-value" id="trophies">
+                <div
+                    id="trophies"
+                    class="stat-value"
+                >
                     -
                 </div>
 
             </div>
 
 
+
             <div class="stat-card">
 
-                <div class="stat-icon">⭐</div>
+                <div class="stat-icon">
+                    ⭐
+                </div>
 
                 <div class="stat-name">
                     XP LEVEL
                 </div>
 
-                <div class="stat-value" id="xp">
+                <div
+                    id="xp"
+                    class="stat-value"
+                >
                     -
                 </div>
 
             </div>
 
 
+
             <div class="stat-card">
 
-                <div class="stat-icon">🎮</div>
+                <div class="stat-icon">
+                    🎮
+                </div>
 
                 <div class="stat-name">
                     VICTOIRES 3V3
                 </div>
 
-                <div class="stat-value" id="threeVsThree">
+                <div
+                    id="threeVsThree"
+                    class="stat-value"
+                >
                     -
                 </div>
 
             </div>
 
 
+
             <div class="stat-card">
 
-                <div class="stat-icon">⚔️</div>
+                <div class="stat-icon">
+                    ⚔️
+                </div>
 
                 <div class="stat-name">
                     VICTOIRES SOLO
                 </div>
 
-                <div class="stat-value" id="solo">
+                <div
+                    id="solo"
+                    class="stat-value"
+                >
                     -
                 </div>
 
             </div>
 
+
         </section>
+
 
 
         <section class="section">
 
+
             <div class="section-title">
 
-                <span>BRAWLERS</span>
+                <span>
+                    BRAWLERS
+                </span>
 
                 <h2>
                     Brawlers du joueur
@@ -323,19 +547,25 @@
 
             </div>
 
+
             <div
                 id="brawlers"
                 class="brawler-grid"
             ></div>
 
+
         </section>
+
 
 
         <section class="section">
 
+
             <div class="section-title">
 
-                <span>CLUB</span>
+                <span>
+                    CLUB
+                </span>
 
                 <h2>
                     Club
@@ -343,13 +573,17 @@
 
             </div>
 
+
             <div id="club">
                 Aucun club
             </div>
 
+
         </section>
 
+
     </div>
+
 
 
     <div
@@ -358,7 +592,9 @@
         style="display:none;"
     ></div>
 
+
 </main>
+
 
 
 <footer>
@@ -374,179 +610,395 @@
 </footer>
 
 
+
 <script>
 
-const API_URL = "http://127.0.0.1:5000";
+
+/*
+    Backend local pour le moment.
+*/
+
+const API_URL =
+    "http://127.0.0.1:5000";
+
 
 const loading =
     document.getElementById("loading");
 
+
 const content =
     document.getElementById("content");
+
 
 const errorBox =
     document.getElementById("error");
 
 
-async function loadPlayer() {
 
-    const stored =
-        sessionStorage.getItem("rankifyPlayer");
-
-    if (!stored) {
-
-        showError(
-            "Aucun joueur sélectionné."
-        );
-
-        return;
-    }
-
-
-    const player = JSON.parse(stored);
-
-
-    document.getElementById(
-        "playerName"
-    ).textContent =
-        player.name || "Joueur";
-
-
-    document.getElementById(
-        "playerTag"
-    ).textContent =
-        player.tag || "";
-
-
-    document.getElementById(
-        "avatar"
-    ).textContent =
-        (player.name || "?")
-        .charAt(0)
-        .toUpperCase();
-
-
-    document.getElementById(
-        "trophies"
-    ).textContent =
-        formatNumber(player.trophies);
-
-
-    document.getElementById(
-        "xp"
-    ).textContent =
-        formatNumber(player.expLevel);
-
-
-    document.getElementById(
-        "threeVsThree"
-    ).textContent =
-        formatNumber(
-            player["3vs3Victories"]
-        );
-
-
-    document.getElementById(
-        "solo"
-    ).textContent =
-        formatNumber(
-            player.soloVictories
-        );
-
-
-    if (player.club) {
-
-        document.getElementById(
-            "club"
-        ).textContent =
-            `${player.club.name} (${player.club.tag})`;
-
-    }
-
-
-    const brawlers =
-        player.brawlers || [];
-
-    const container =
-        document.getElementById("brawlers");
-
-
-    if (brawlers.length === 0) {
-
-        container.innerHTML =
-            "<p>Aucun Brawler disponible.</p>";
-
-    } else {
-
-        container.innerHTML =
-            brawlers.map(brawler => `
-
-                <div class="brawler">
-
-                    <div class="brawler-name">
-                        ${escapeHTML(brawler.name)}
-                    </div>
-
-                    <div class="brawler-info">
-                        🏆 ${formatNumber(brawler.trophies)}
-                    </div>
-
-                    <div class="brawler-info">
-                        ⚡ Power ${brawler.power}
-                    </div>
-
-                </div>
-
-            `).join("");
-
-    }
-
-
-    loading.style.display = "none";
-
-    content.style.display = "block";
-}
-
-
-function formatNumber(number) {
+function formatNumber(value) {
 
     if (
-        number === undefined ||
-        number === null
+        value === undefined ||
+        value === null
     ) {
+
         return "-";
+
     }
 
-    return Number(number).toLocaleString("fr-FR");
+    return Number(value)
+        .toLocaleString("fr-FR");
+
 }
 
 
-function escapeHTML(text) {
 
-    return String(text)
+function escapeHTML(value) {
+
+    return String(value)
+
         .replaceAll("&", "&amp;")
+
         .replaceAll("<", "&lt;")
+
         .replaceAll(">", "&gt;")
+
         .replaceAll('"', "&quot;")
+
         .replaceAll("'", "&#039;");
+
 }
+
 
 
 function showError(message) {
 
-    loading.style.display = "none";
+    loading.style.display =
+        "none";
+
+    content.style.display =
+        "none";
 
     errorBox.textContent =
         "❌ " + message;
 
     errorBox.style.display =
         "block";
+
 }
+
+
+
+async function loadPlayer() {
+
+
+    /*
+        On récupère le tag
+        directement depuis l'URL.
+
+        Exemple :
+
+        player.html?tag=%23ABC123
+    */
+
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    let tag =
+        params.get("tag");
+
+
+    /*
+        Si aucun tag dans l'URL,
+        on essaye le sessionStorage.
+    */
+
+    if (!tag) {
+
+        tag =
+            sessionStorage.getItem(
+                "rankifyPlayerTag"
+            );
+
+    }
+
+
+    if (!tag) {
+
+        showError(
+            "Aucun Player Tag sélectionné."
+        );
+
+        return;
+
+    }
+
+
+    tag =
+        decodeURIComponent(tag)
+            .trim()
+            .toUpperCase();
+
+
+    if (tag.startsWith("#")) {
+
+        tag =
+            tag.substring(1);
+
+    }
+
+
+    loading.textContent =
+        "🔎 Recherche du joueur #" +
+        tag +
+        "...";
+
+
+    try {
+
+
+        /*
+            IMPORTANT :
+
+            On récupère maintenant
+            directement les données
+            depuis le backend.
+        */
+
+
+        const response =
+            await fetch(
+                `${API_URL}/api/player/${encodeURIComponent(tag)}`
+            );
+
+
+        const player =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                player.error ||
+                "Joueur introuvable."
+            );
+
+        }
+
+
+        /*
+            NOM
+        */
+
+        const name =
+            player.name || "Joueur";
+
+
+        document.getElementById(
+            "playerName"
+        ).textContent =
+            name;
+
+
+        /*
+            TAG
+        */
+
+        document.getElementById(
+            "playerTag"
+        ).textContent =
+            player.tag ||
+            "#" + tag;
+
+
+        /*
+            AVATAR
+        */
+
+        document.getElementById(
+            "avatar"
+        ).textContent =
+            name
+                .charAt(0)
+                .toUpperCase();
+
+
+        /*
+            TROPHÉES
+        */
+
+        document.getElementById(
+            "trophies"
+        ).textContent =
+            formatNumber(
+                player.trophies
+            );
+
+
+        /*
+            XP
+        */
+
+        document.getElementById(
+            "xp"
+        ).textContent =
+            formatNumber(
+                player.expLevel
+            );
+
+
+        /*
+            VICTOIRES 3V3
+        */
+
+        document.getElementById(
+            "threeVsThree"
+        ).textContent =
+            formatNumber(
+                player["3vs3Victories"]
+            );
+
+
+        /*
+            VICTOIRES SOLO
+        */
+
+        document.getElementById(
+            "solo"
+        ).textContent =
+            formatNumber(
+                player.soloVictories
+            );
+
+
+        /*
+            CLUB
+        */
+
+        if (player.club) {
+
+            document.getElementById(
+                "club"
+            ).innerHTML = `
+
+                <strong>
+                    ${escapeHTML(
+                        player.club.name
+                    )}
+                </strong>
+
+                <br>
+
+                <span style="color:#777c89">
+                    ${escapeHTML(
+                        player.club.tag
+                    )}
+                </span>
+
+            `;
+
+        }
+
+
+        /*
+            BRAWLERS
+        */
+
+        const brawlers =
+            player.brawlers || [];
+
+
+        const container =
+            document.getElementById(
+                "brawlers"
+            );
+
+
+        if (!brawlers.length) {
+
+            container.innerHTML =
+                "<p>Aucun Brawler disponible.</p>";
+
+        } else {
+
+            container.innerHTML =
+
+                brawlers
+                    .map(
+                        brawler => `
+
+                        <div class="brawler">
+
+                            <div class="brawler-name">
+
+                                ${escapeHTML(
+                                    brawler.name
+                                )}
+
+                            </div>
+
+                            <div class="brawler-info">
+
+                                🏆
+                                ${formatNumber(
+                                    brawler.trophies
+                                )}
+
+                            </div>
+
+                            <div class="brawler-info">
+
+                                ⚡ Power
+                                ${brawler.power}
+
+                            </div>
+
+                        </div>
+
+                    `
+                    )
+                    .join("");
+
+        }
+
+
+        /*
+            AFFICHAGE
+        */
+
+        loading.style.display =
+            "none";
+
+
+        content.style.display =
+            "block";
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        showError(
+            error.message ||
+            "Impossible de charger le joueur."
+        );
+
+    }
+
+}
+
 
 
 loadPlayer();
 
+
 </script>
+
 
 </body>
 
