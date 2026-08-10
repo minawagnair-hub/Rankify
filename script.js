@@ -2,70 +2,76 @@ const playerInput = document.getElementById("playerTag");
 const searchButton = document.getElementById("searchButton");
 const searchMessage = document.getElementById("searchMessage");
 
+// Pour le moment, backend local
+const API_URL = "http://127.0.0.1:5000";
+
 function cleanTag(tag) {
-    return tag
-        .trim()
-        .toUpperCase()
-        .replace(/\s+/g, "");
-}
-
-function isValidTag(tag) {
-    return /^#[A-Z0-9]{5,15}$/.test(tag);
-}
-
-function searchPlayer() {
-    const tag = cleanTag(playerInput.value);
-
-    searchMessage.textContent = "";
-
-    if (!tag) {
-        searchMessage.textContent =
-            "⚠️ Entre un Player Tag.";
-        return;
-    }
+    tag = tag.trim().toUpperCase();
 
     if (!tag.startsWith("#")) {
-        searchMessage.textContent =
-            "⚠️ Le Player Tag doit commencer par #.";
-        return;
+        tag = "#" + tag;
     }
 
-    if (!isValidTag(tag)) {
+    return tag;
+}
+
+async function searchPlayer() {
+
+    const tag = cleanTag(playerInput.value);
+
+    if (tag.length < 6) {
         searchMessage.textContent =
-            "⚠️ Player Tag invalide.";
+            "⚠️ Entre un Player Tag valide.";
         return;
     }
 
     searchMessage.textContent =
-        "🔎 Recherche du joueur...";
+        "🔎 Recherche de " + tag + "...";
 
-    /*
-     * Pour l'instant, cette partie est une démonstration.
-     *
-     * IMPORTANT :
-     * La clé API Brawl Stars ne doit PAS être placée ici.
-     *
-     * Plus tard :
-     *
-     * Site → Backend Rankify → API Brawl Stars
-     */
+    searchButton.disabled = true;
 
-    setTimeout(() => {
+    try {
+
+        const response = await fetch(
+            `${API_URL}/api/player/${encodeURIComponent(tag)}`
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.error || "Joueur introuvable."
+            );
+        }
+
+        // Sauvegarde du joueur
+        sessionStorage.setItem(
+            "rankifyPlayer",
+            JSON.stringify(data)
+        );
+
+        // Sauvegarde également du tag
+        sessionStorage.setItem(
+            "rankifyPlayerTag",
+            tag
+        );
+
+        // Aller vers le profil
+        window.location.href =
+            "player.html";
+
+    } catch (error) {
+
+        console.error(error);
 
         searchMessage.textContent =
-            "✅ Player Tag accepté !";
+            "❌ " + error.message;
 
-        const encodedTag =
-            encodeURIComponent(tag.substring(1));
+    } finally {
 
-        /*
-         * Page profil temporaire.
-         */
+        searchButton.disabled = false;
 
-        window.location.href =
-            `player.html?tag=${encodedTag}`;
-
-    }, 700);
+    }
 }
 
 searchButton.addEventListener(
@@ -75,7 +81,7 @@ searchButton.addEventListener(
 
 playerInput.addEventListener(
     "keydown",
-    function(event) {
+    event => {
 
         if (event.key === "Enter") {
             searchPlayer();
@@ -83,27 +89,3 @@ playerInput.addEventListener(
 
     }
 );
-
-
-/*
- * Exemple de Player Tag
- */
-
-const exampleButtons =
-    document.querySelectorAll(".example-tag");
-
-exampleButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        function() {
-
-            playerInput.value =
-                button.dataset.tag;
-
-            searchPlayer();
-
-        }
-    );
-
-});
