@@ -2,11 +2,24 @@ const playerInput = document.getElementById("playerTag");
 const searchButton = document.getElementById("searchButton");
 const searchMessage = document.getElementById("searchMessage");
 
-// Pour le moment, backend local
+/*
+    POUR LES TESTS SUR TON PC :
+
+    Ton backend tourne ici :
+    http://127.0.0.1:5000
+
+    PLUS TARD, quand le backend sera hébergé,
+    on remplacera cette adresse par l'URL HTTPS.
+*/
+
 const API_URL = "http://127.0.0.1:5000";
 
+
 function cleanTag(tag) {
-    tag = tag.trim().toUpperCase();
+
+    tag = tag
+        .trim()
+        .toUpperCase();
 
     if (!tag.startsWith("#")) {
         tag = "#" + tag;
@@ -15,50 +28,74 @@ function cleanTag(tag) {
     return tag;
 }
 
+
 async function searchPlayer() {
 
     const tag = cleanTag(playerInput.value);
 
     if (tag.length < 6) {
+
         searchMessage.textContent =
             "⚠️ Entre un Player Tag valide.";
+
         return;
     }
 
-    searchMessage.textContent =
-        "🔎 Recherche de " + tag + "...";
 
     searchButton.disabled = true;
 
+    searchMessage.textContent =
+        `🔎 Recherche de ${tag}...`;
+
+
     try {
 
-        const response = await fetch(
-            `${API_URL}/api/player/${encodeURIComponent(tag)}`
-        );
+        const url =
+            `${API_URL}/api/player/${encodeURIComponent(tag)}`;
 
-        const data = await response.json();
+
+        const response =
+            await fetch(url);
+
+
+        const data =
+            await response.json();
+
 
         if (!response.ok) {
+
             throw new Error(
-                data.error || "Joueur introuvable."
+                data.error ||
+                "Joueur introuvable."
             );
+
         }
 
-        // Sauvegarde du joueur
+
+        /*
+            On sauvegarde le joueur
+            pour pouvoir afficher son profil.
+        */
+
         sessionStorage.setItem(
             "rankifyPlayer",
             JSON.stringify(data)
         );
 
-        // Sauvegarde également du tag
+
         sessionStorage.setItem(
             "rankifyPlayerTag",
             tag
         );
 
-        // Aller vers le profil
+
+        /*
+            On met aussi le tag dans l'URL.
+        */
+
         window.location.href =
-            "player.html";
+            `player.html?tag=${encodeURIComponent(tag)}`;
+
 
     } catch (error) {
 
@@ -74,14 +111,16 @@ async function searchPlayer() {
     }
 }
 
+
 searchButton.addEventListener(
     "click",
     searchPlayer
 );
 
+
 playerInput.addEventListener(
     "keydown",
-    event => {
+    function(event) {
 
         if (event.key === "Enter") {
             searchPlayer();
@@ -89,3 +128,26 @@ playerInput.addEventListener(
 
     }
 );
+
+
+/*
+    Bouton d'exemple
+*/
+
+document
+    .querySelectorAll(".example-tag")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                playerInput.value =
+                    button.dataset.tag;
+
+                searchPlayer();
+
+            }
+        );
+
+    });
