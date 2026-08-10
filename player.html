@@ -1,1 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Rankify — Player</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        .player-page {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 25px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 30px;
+
+            color: #9296a3;
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+        .back-button:hover {
+            color: #ffcf33;
+        }
+
+        .player-header {
+            padding: 35px;
+
+            background: #101219;
+
+            border: 1px solid #20232d;
+            border-radius: 18px;
+
+            margin-bottom: 20px;
+        }
+
+        .player-name {
+            font-size: 38px;
+            font-weight: 900;
+        }
+
+        .player-tag {
+            margin-top: 8px;
+
+            color: #777c89;
+
+            font-family: monospace;
+        }
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .stat-card {
+            padding: 25px;
+
+            background: #101219;
+
+            border: 1px solid #20232d;
+
+            border-radius: 16px;
+        }
+
+        .stat-icon {
+            font-size: 25px;
+        }
+
+        .stat-name {
+            margin-top: 15px;
+
+            color: #777c89;
+
+            font-size: 13px;
+        }
+
+        .stat-value {
+            margin-top: 7px;
+
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .rank-section {
+            margin-top: 20px;
+
+            padding: 30px;
+
+            background: #101219;
+
+            border: 1px solid #20232d;
+
+            border-radius: 18px;
+        }
+
+        .rank-title {
+            color: #ffcf33;
+
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .rank-name {
+            margin-top: 10px;
+
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        @media (max-width: 800px) {
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="logo">
+        <span>R</span> Rankify
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Accueil
+        </a>
+
+        <a href="index.html#search">
+            Recherche
+        </a>
+
+    </nav>
+
+    <a
+        class="discord-button"
+        href="#"
+    >
+        Discord
+    </a>
+
+</header>
+
+
+
+<main class="player-page">
+
+
+    <a
+        href="index.html"
+        class="back-button"
+    >
+        ← Retour à la recherche
+    </a>
+
+
+
+    <section class="player-header">
+
+        <div
+            id="playerName"
+            class="player-name"
+        >
+            Joueur
+        </div>
+
+        <div
+            id="playerTag"
+            class="player-tag"
+        >
+            #PLAYER
+        </div>
+
+    </section>
+
+
+
+    <section class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <div class="stat-name">
+                TROPHÉES
+            </div>
+
+            <div class="stat-value">
+                —
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🔥
+            </div>
+
+            <div class="stat-name">
+                RANKED ELO
+            </div>
+
+            <div class="stat-value">
+                —
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎮
+            </div>
+
+            <div class="stat-name">
+                VICTOIRES
+            </div>
+
+            <div class="stat-value">
+                —
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⭐
+            </div>
+
+            <div class="stat-name">
+                NIVEAU XP
+            </div>
+
+            <div class="stat-value">
+                —
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <section class="rank-section">
+
+        <div class="rank-title">
+            RANKED
+        </div>
+
+        <div
+            id="rankName"
+            class="rank-name"
+        >
+            Données bientôt disponibles
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<footer>
+
+    <div>
+        © 2026 Rankify
+    </div>
+
+    <div>
+        Brawl Stars Player Stats
+    </div>
+
+</footer>
+
+
+
+<script>
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const tag =
+        params.get("tag");
+
+
+    if (tag) {
+
+        document.getElementById(
+            "playerTag"
+        ).textContent =
+            "#" + tag;
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
