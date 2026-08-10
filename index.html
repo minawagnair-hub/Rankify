@@ -1,1 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Rankify — Brawl Stars Stats</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <div class="logo">
+            <span>R</span> Rankify
+        </div>
+
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="#search">Recherche</a>
+            <a href="#about">À propos</a>
+        </nav>
+
+        <a
+            class="discord-button"
+            href="#"
+        >
+            Discord
+        </a>
+
+    </header>
+
+
+    <!-- HERO -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    ★ BRAWL STARS PLAYER STATS
+                </div>
+
+                <h1>
+                    Analyse ton
+                    <span>profil Brawl Stars.</span>
+                </h1>
+
+                <p>
+                    Recherche un joueur et découvre ses statistiques,
+                    ses trophées, son classement Ranked et bien plus.
+                </p>
+
+
+                <!-- SEARCH -->
+                <div id="search" class="search-box">
+
+                    <input
+                        id="playerTag"
+                        type="text"
+                        placeholder="#PLAYER TAG"
+                        autocomplete="off"
+                    >
+
+                    <button id="searchButton">
+                        🔍
+                    </button>
+
+                </div>
+
+                <div id="searchMessage" class="search-message"></div>
+
+
+                <div class="examples">
+
+                    <span>Exemple :</span>
+
+                    <button
+                        class="example-tag"
+                        data-tag="#RJGYR9JY8"
+                    >
+                        #RJGYR9JY8
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+        <section class="features">
+
+            <div class="section-title">
+
+                <span>RANKIFY</span>
+
+                <h2>
+                    Toutes tes statistiques
+                </h2>
+
+                <p>
+                    Un endroit simple pour consulter ton profil.
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🏆
+                    </div>
+
+                    <h3>
+                        Trophées
+                    </h3>
+
+                    <p>
+                        Consulte tes trophées et ta progression.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🔥
+                    </div>
+
+                    <h3>
+                        Ranked
+                    </h3>
+
+                    <p>
+                        Consulte ton classement et ton Ranked Elo.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        👊
+                    </div>
+
+                    <h3>
+                        Brawlers
+                    </h3>
+
+                    <p>
+                        Découvre les statistiques de tes Brawlers.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📈
+                    </div>
+
+                    <h3>
+                        Progression
+                    </h3>
+
+                    <p>
+                        Suis ton évolution au fil du temps.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+        <section id="about" class="about">
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    ⚡
+                </div>
+
+                <div>
+
+                    <h2>
+                        Rankify
+                    </h2>
+
+                    <p>
+                        Rankify est un projet indépendant consacré
+                        aux statistiques Brawl Stars.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div>
+            © 2026 Rankify
+        </div>
+
+        <div>
+            Brawl Stars Stats
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
